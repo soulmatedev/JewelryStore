@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="Authorization" Height="500" Width="400" ResizeMode="NoResize">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" Source="/Resources/Logo.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        
         <StackPanel Grid.Row="1" Margin="20" VerticalAlignment="Center">
             <Label Content="Логин" Foreground="#484848" />
             <TextBox Name="tbLogin" Margin="0 4" FontSize="14" />
