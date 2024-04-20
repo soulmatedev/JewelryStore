@@ -42,11 +42,23 @@ namespace JewelryStore
                 captchaGenerator.GenerateCaptcha(canvas);
                 isRequireCaptcha = true;
                 return;
-            } else
+            }           
+            
+            if(isRequireCaptcha)
             {
-                MessageBox.Show("Успешная авторизация!");
-                captchaCode = null;
                 isRequireCaptcha = false;
+            }
+
+            switch (user.Role1.name)
+            {
+                case "Администратор":                  
+                    break;
+                case "Менеджер":
+                    View.ProductView productView = new View.ProductView(entities, user);
+                    productView.Owner = this;    
+                    productView.Show();
+                    Hide();
+                    break;
             }
         }
     }
