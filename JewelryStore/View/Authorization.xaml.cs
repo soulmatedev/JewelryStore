@@ -1,6 +1,7 @@
 ﻿using JewelryStore.Middleware;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace JewelryStore
 {
@@ -42,20 +43,24 @@ namespace JewelryStore
                 captchaGenerator.GenerateCaptcha(canvas);
                 isRequireCaptcha = true;
                 return;
-            }           
-            
-            if(isRequireCaptcha)
+            }
+
+            if (isRequireCaptcha)
             {
                 isRequireCaptcha = false;
             }
 
             switch (user.Role1.name)
             {
-                case "Администратор":                  
+                case "Администратор":
+                    View.AdminView adminView = new View.AdminView(entities, user);
+                    adminView.Owner = this;
+                    adminView.Show();
+                    Hide();
                     break;
                 case "Менеджер":
                     View.ProductView productView = new View.ProductView(entities, user);
-                    productView.Owner = this;    
+                    productView.Owner = this;
                     productView.Show();
                     Hide();
                     break;
