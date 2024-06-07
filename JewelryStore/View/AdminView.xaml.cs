@@ -39,7 +39,7 @@ namespace JewelryStore.View
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
             Product newProduct = new Product();
-            ProductDialog dialog = new ProductDialog(newProduct);
+            ProductDialog dialog = new ProductDialog(newProduct, isEditing: false, entities);
             if (dialog.ShowDialog() == true)
             {
                 try
@@ -77,7 +77,7 @@ namespace JewelryStore.View
         {
             if (SelectedProduct != null)
             {
-                ProductDialog dialog = new ProductDialog(SelectedProduct);
+                ProductDialog dialog = new ProductDialog(SelectedProduct, isEditing: true, entities);
                 if (dialog.ShowDialog() == true)
                 {
                     try
@@ -113,6 +113,7 @@ namespace JewelryStore.View
                 MessageBox.Show("Выберите продукт для редактирования");
             }
         }
+
 
 
         private void DeleteProduct_Click(object sender, RoutedEventArgs e)

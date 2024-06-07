@@ -1,31 +1,42 @@
 ﻿<Window x:Class="JewelryStore.View.ProductDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Product Dialog" Height="300" Width="400">
-    <Grid>
+        Title="ProductDialog" Height="450" Width="400">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="10">
-            <Label Content="Название" />
-            <TextBox Name="tbName" Margin="0 5" />
+            <TextBlock Text="Артикул"/>
+            <TextBox Name="tbArticleNumber" IsReadOnly="{Binding IsReadOnlyArticleNumber}"/>
 
-            <Label Content="Описание" />
-            <TextBox Name="tbDescription" Margin="0 5" />
+            <TextBlock Text="Название"/>
+            <TextBox Name="tbName"/>
 
-            <Label Content="Производитель" />
-            <TextBox Name="tbManufacturer" Margin="0 5" />
+            <TextBlock Text="Описание"/>
+            <TextBox Name="tbDescription"/>
 
-            <Label Content="Цена" />
-            <TextBox Name="tbCost" Margin="0 5" />
+            <TextBlock Text="Производитель"/>
+            <TextBox Name="tbManufacturer"/>
+
+            <TextBlock Text="Категория"/>
+            <ComboBox Name="cbCategory" DisplayMemberPath="name" SelectedValuePath="id"/>
+
+            <TextBlock Text="Поставщик"/>
+            <ComboBox Name="cbProvider" DisplayMemberPath="name" SelectedValuePath="id"/>
+
+            <TextBlock Text="Единица измерения"/>
+            <ComboBox Name="cbUnit" DisplayMemberPath="name" SelectedValuePath="id"/>
+
+            <TextBlock Text="Стоимость"/>
+            <TextBox Name="tbCost"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Content="ОК" Margin="5" Click="OkButton_Click" />
-            <Button Content="Отмена" Margin="5" Click="CancelButton_Click" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="ОК" Click="OkButton_Click" Margin="5"/>
+            <Button Content="Отмена" Click="CancelButton_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>
