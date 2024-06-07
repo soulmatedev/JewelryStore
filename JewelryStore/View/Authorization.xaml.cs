@@ -59,9 +59,15 @@ namespace JewelryStore
                     Hide();
                     break;
                 case "Менеджер":
-                    View.ProductView productView = new View.ProductView(entities, user);
-                    productView.Owner = this;
-                    productView.Show();
+                    View.ProductView managerView = new View.ProductView(entities, user);
+                    managerView.Owner = this;
+                    managerView.Show();
+                    Hide();
+                    break;
+                case "Клиент":
+                    View.ProductView clientView = new View.ProductView(entities, user);
+                    clientView.Owner = this;
+                    clientView.Show();
                     Hide();
                     break;
             }

@@ -26,7 +26,6 @@
         <ListView Grid.Row="1" ItemsSource="{Binding Products}" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
-
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -34,34 +33,37 @@
                             <ColumnDefinition Width="48"/>
                         </Grid.ColumnDefinitions>
 
+                        <!-- Фото товара -->
                         <Border Grid.Column="0" Width="48" Height="48" Margin="10">
                             <Image Source="{Binding photo}"/>
                         </Border>
 
-                        <TextBlock Grid.Column="1">
-                            <Run FontWeight="Bold" Foreground="Black" Text="{Binding name}"/>
-                            <LineBreak/>
-                            <Run Text="{Binding description}"/>
-                            <LineBreak/>
-                            <Run Text="{Binding manufacturer.name}"/>
-                            <LineBreak/>
-                            <Run Text="{Binding cost}"/>
-                        </TextBlock>
+                        <!-- Информация о товаре -->
+                        <StackPanel Grid.Column="1" Margin="10">
+                            <TextBlock FontWeight="Bold" Foreground="Black" Text="{Binding name}"/>
+                            <TextBlock Text="{Binding description}"/>
+                            <TextBlock Text="{Binding manufacturer.name}"/>
+                            <TextBlock Text="{Binding cost}"/>
+                        </StackPanel>
 
-                        <TextBlock
-                            Grid.Column="2"
-                            FontSize="24"
-                            FontWeight="Bold"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Text="{Binding QuantityInStock}">
- 
+                        <!-- Наличие товара -->
+                        <TextBlock Grid.Column="2" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding QuantityInStock}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <!-- Пример изменения цвета текста в зависимости от наличия товара -->
+                                        <DataTrigger Binding="{Binding QuantityInStock}" Value="0">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
                         </TextBlock>
                     </Grid>
-
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
 
         <!--Пагинация-->
         <Grid Grid.Row="2"></Grid>
