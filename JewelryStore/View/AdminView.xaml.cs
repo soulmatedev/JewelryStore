@@ -1,13 +1,15 @@
 ﻿using JewelryStore.Database;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace JewelryStore.View
 {
-    public partial class AdminView : Window
+    public partial class AdminView : Window, INotifyPropertyChanged
     {
         private readonly TradeEntities entities;
 
@@ -17,14 +19,21 @@ namespace JewelryStore.View
         public Product SelectedProduct
         {
             get { return selectedProduct; }
-            set { selectedProduct = value; }
+            set
+            {
+                selectedProduct = value;
+                OnPropertyChanged();
+            }
         }
+
+        public int ProductCount => Products.Count;
 
         public AdminView(TradeEntities entities, User user)
         {
             InitializeComponent();
             this.entities = entities;
             Products = new ObservableCollection<Product>(entities.Products);
+            Products.CollectionChanged += (s, e) => OnPropertyChanged(nameof(ProductCount));
             DataContext = this;
         }
 
@@ -114,8 +123,6 @@ namespace JewelryStore.View
             }
         }
 
-
-
         private void DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedProduct != null)
@@ -128,6 +135,13 @@ namespace JewelryStore.View
             {
                 MessageBox.Show("Выберите продукт для удаления");
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

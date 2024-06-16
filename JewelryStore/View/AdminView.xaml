@@ -67,6 +67,13 @@
             <Button Content="Добавить" Margin="5" Click="AddProduct_Click"/>
             <Button Content="Редактировать" Margin="5" Click="EditProduct_Click"/>
             <Button Content="Удалить" Margin="5" Click="DeleteProduct_Click"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="5" Margin="10,0,10,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Количество товаров: "/>
+                    <TextBlock Text="{Binding ProductCount}"/>
+                </StackPanel>
+            </Border>
         </StackPanel>
     </Grid>
 </Window>
