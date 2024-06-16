@@ -65,8 +65,8 @@
                             FontWeight="Bold"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
-                            Text="{Binding QuantityInStock}">
-
+                            >
+                            <Run Text="{Binding quantityInStock}"/>
                         </TextBlock>
                     </Grid>
 
